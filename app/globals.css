@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  /* VH institutional palette — primary teal #0F6E56, accent gold #BA7517 */
+  --color-vh-green-50:  #ecfaf5;
+  --color-vh-green-100: #d0f0e6;
+  --color-vh-green-200: #a1e1cd;
+  --color-vh-green-300: #63c9aa;
+  --color-vh-green-400: #2aac87;
+  --color-vh-green-500: #178e6b;
+  --color-vh-green-600: #0F6E56;
+  --color-vh-green-700: #0b5843;
+  --color-vh-green-800: #074030;
+  --color-vh-green-900: #042e22;
+  --color-vh-green-950: #021e16;
+
+  --color-vh-gold-300: #dfc87a;
+  --color-vh-gold-400: #C9A84C;
+  --color-vh-gold-500: #BA7517;
+  --color-vh-gold-600: #9A6210;
+
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(1rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 0.25s ease-out both;
+}
+
+/* Safe area bottom padding for iOS */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Hide scrollbar */
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }

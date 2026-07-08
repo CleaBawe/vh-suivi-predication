@@ -1,0 +1,628 @@
+{
+  "courses": [
+    {
+      "classe": 1,
+      "numero": 1,
+      "titre": "Cours introductif Classe 1",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/CI1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/CI2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/CI3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/CI4.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 1,
+      "numero": 2,
+      "titre": "La Méditation",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/MEDITATION 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/MEDITATION 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/MEDITATION 3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/MEDITATION 4.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 1,
+      "numero": 3,
+      "titre": "Atelier Pratique méditation",
+      "type": "officiel",
+      "audio": [],
+      "note": "audio manquant - à retrouver"
+    },
+    {
+      "classe": 1,
+      "numero": 4,
+      "titre": "La Soif",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/La Soif 1_1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/LA SOIF 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/La Soif 3.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 1,
+      "numero": 5,
+      "titre": "Intime de Dieu",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/INTIMES 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/IMTIMES 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/INTIMES 3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/INTIMES 4.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 1,
+      "numero": 6,
+      "titre": "Différents Niveaux d'Intimité (1)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/GRANDIR DANS L'INTIMITE 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/GRANDIR DANS L'INTIMITE 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/GRANDIR DANS L'INTIMITE 3.mp3"
+      ],
+      "note": "split arbitraire des 5 parties 'Grandir dans l'intimité' - à confirmer. Doublon possible avec fichiers 107-109"
+    },
+    {
+      "classe": 1,
+      "numero": 7,
+      "titre": "Différents Niveaux d'Intimité (2)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/GRANDIR DANS L'INTIMITE 4.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/GRANDIR DANS L'INTIMITE 5.mp3"
+      ],
+      "note": "voir note cours 6"
+    },
+    {
+      "classe": 1,
+      "numero": 8,
+      "titre": "Le Saint-Esprit dans le Porteur de Vie",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/connaitre_le_saint_esprit_cole_1.mp3"
+      ],
+      "note": "correspondance incertaine avec 'Connaître le Saint-Esprit - Ecole 1' - à confirmer"
+    },
+    {
+      "classe": 1,
+      "numero": 9,
+      "titre": "La Prière d'Influence",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/INFLUENCE 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/INFLUENCE 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/INFLUENCE 3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/INFLUENCE 4.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 1,
+      "numero": 10,
+      "titre": "Les 4 Dimensions de l'Amour",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/AMOUR 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/AMOUR 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/AMOUR 3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/AMOUR 4.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/AMOUR 5.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/AMOUR 6.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 1,
+      "numero": 11,
+      "titre": "L'Adoration",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/ADORATION 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/ADORATION 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/ADORATION 3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/ADORATION 4.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 1,
+      "titre": "Cours introductif Classe 2",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/cours_inroductif_ecole_2.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 2,
+      "titre": "Dieu est notre Père",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/WQIiVM5YcApV4TDF5CSH6tVeDQ4FO3p5dSmYD0nO.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 3,
+      "titre": "Le Saint-Esprit Consolateur",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/TlQSsCd9glnZrLHNyHnBoQl8l5oA3fMwAXOIRgta.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/JOjkdUKsad20pV1lVsAwATjyjSLQMgKxoNW0tG34.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 4,
+      "titre": "Soyez toujours Joyeux",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/1_01 la joie PV Nivo 2 partie 1 Pst Mohammed Sam 140412.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/1_02 la joie PV Nivo 2 partie 1 Pst Mohammed Sam 140412.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/1_03 la joie PV Nivo 2 partie 1 Pst Mohammed Sam 140412.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/1_04 la joie PV Nivo 2 partie 2 Pst Mohammed Sam 140412.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/1_05 la joie PV Nivo 2 partie 2 Pst Mohammed Sam 140412.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/1_06 la joie PV Nivo 2 partie 2 Pst Mohammed Sam 140412.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 5,
+      "titre": "La Nouvelle Création (1)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/k8d5z8Dh3eEqyhiQrOAzczh9vl8w4FWiJxUimfT1.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/fjN6bOBOInLfMOkyeQb4TCbw1jJrpntg3ZWpXPlr.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/rFnuLZ8ll5psSKF9ZZkAqK0BZBhUbCcFA1atyb3O.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/zdRXGSDUi9XCtdquZcyAFuQpfk3Z6KVBup95hq1m.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/5xXCnWextqq23gdM1sRkQjhnK2x9C2HF0nXJjuqu.mpga"
+      ],
+      "note": "split arbitraire des 10 parties - à confirmer"
+    },
+    {
+      "classe": 2,
+      "numero": 6,
+      "titre": "La Nouvelle Création (2)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/Hx4p1v7Bdr2WerQGbL7JglPICGKexkOkDYdBpiSc.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/SRCQmZ2ogAyypccrVG41IbNMhb7pfx5V3QQLaShi.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/uCEKPCtAs1pb1LjcpT7qijhxfaU2U4D9a8YJwReF.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/UE8RP4GYmZLqaX6S1OMgE36aeUmkC8TaZosQEMee.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/lXg7ZDz8SGge2kLe2AJhxhGHFF3Mlhvh7xyYiPd4.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 7,
+      "titre": "Les pensées",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/8o7oCApZssARHyfjB7eeVn0i2NxFhcN5TOzDj9xh.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/c8esMOUoIzZqZdl8JNpdJ2voETY2shVcDTrb3Emh.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/gWPs5CGINDbmCl4cACCLZUpyVanNK5pGWpeLOcs2.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/TobSWlYJIRkQ0RigdkcXlsTjdrFVurU0xu1E3uTz.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/deTiYqMMjNeWgKi83nqmc2ss42ncz0pB7I1lMmCL.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/S2GGYO0xe9l3F0Fm8ceVlBwFv3jIhuppSyFmyIVF.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/IK60Acqxi4p8awPMiPRd8Bsj5kRDNvpHnQku1ZjB.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/5iBFNul3uZjHPX6XZRGSEVEWUy2gR0M3QudmfCm0.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/tEY0GXpXaySIXSw40kSnPbZvmmg3AZxMDo6INcFC.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 8,
+      "titre": "La Croix",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/FWLqFpRWPdpNCmdz5f1I82U8OhFChLovGiZASk63.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/j8CML4tR83oeu6P4hOJbmD9ggLoemrUDCLCvf4mk.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 2,
+      "numero": 9,
+      "titre": "Dix Épreuves du Désert (1)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/LXxrrFBuHIV9FK01HYlQAY9ZMZSC08VHM4PklrnX.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/5nWO4T5uG6HEcuX3MjrERt4CdSncQwX3o1QKjN1B.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/3dsjaLnMD902AfTiMq2Wm2HZOn31HsQTURPL6R5o.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/3cr3s4bHc83eW465aw7pazoTYHMvbcFQpfoMZIsH.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/FkTuv8Gb491A74JBXZpfpIi6aJeNYVE8HQ6Ly0LU.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/SdTvuDAM5dFIG9tXvaEXPfrMRpkQyphSsB6UHNGc.mpga"
+      ],
+      "note": "intro + épreuves 1 à 5, split à confirmer"
+    },
+    {
+      "classe": 2,
+      "numero": 10,
+      "titre": "Dix Épreuves du Désert (2)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/Les_10_epreuves_du_desert_2eme_Partie_file4.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/Epreuve 8.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/Epreuve 9.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/Epreuve 10.mp3"
+      ],
+      "note": "épreuves 6 à 10 (6&7 dans un même fichier)"
+    },
+    {
+      "classe": 2,
+      "numero": 11,
+      "titre": "Quitter pour Posséder",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/J3BmYSzTpC8Dp98W90KiCRRhOeCAUZyWFz2OwVj1.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/Dof7WGKEuIRSXMlEqUIDzodqc7e5IN9Ad1O8VIxH.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/3a5LEx1f2DIXgXHFG6FgyBMnijiIFMlk0s1gc50E.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/xcn1MycxUaLZ7SlEQVRxtmeXphgQ0IpKLdJPHWH5.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 1,
+      "titre": "Cours introductif Classe 3",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/cours_intro_ecole_3.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 2,
+      "titre": "Comment diriger un temps de Prière",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/diriger un temps de prière (mp3cut.net).mp3",
+        "https://zoe.porteursdevie.org/storage/audio/diriger un temps de prière (mp3cut.net) (1).mp3",
+        "https://zoe.porteursdevie.org/storage/audio/diriger un temps de prière (mp3cut.net) (2).mp3",
+        "https://zoe.porteursdevie.org/storage/audio/diriger un temps de prière (mp3cut.net) (3).mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 3,
+      "titre": "La Gestion des Priorités",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/j4ThxP9EFlFg6GqfxjZ0EX4Gcp5XpmZFz2PpNsLU.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/OaEl2T9vtWWPKaiocudMdBUWdarQdRz4jsxv0KRz.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/BXMjrBeOZ51juotUoS6Ri1fBppNFTf1HnhiybHu4.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/vxebLQlpob7P5J1ZrAMHH4h0u36amhamKScpjbGm.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 4,
+      "titre": "Aimer Dieu",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/aimer_Dieu_file1.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/aimer_Dieu_file2.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 5,
+      "titre": "Servir Dieu",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/F3vF55DaEECfYjuBAfdTUMIjGB5mh4i2nPnlY9tW.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/MLsRtF9Zrmdwn8HKQ3aaQc24OP9CGwXiaYUQk87L.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/juWsdwOKbZerEkpG3CaMPjMKvkfkut0CHDFJL4b0.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/FlvDIwIkywUiQqMUj0Y3tUUgkSfbxnzFziioaO3d.mpga"
+      ],
+      "note": "un de ces 4 fichiers correspond peut-être à l'Atelier pratique (cours 6) - à vérifier"
+    },
+    {
+      "classe": 3,
+      "numero": 6,
+      "titre": "Atelier pratique (Servir Dieu)",
+      "type": "officiel",
+      "audio": [],
+      "note": "audio manquant - à retrouver, voir note cours 5"
+    },
+    {
+      "classe": 3,
+      "numero": 7,
+      "titre": "L'Intégrité (1)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/usBrYNdvHVPKO1kAaqxVtesqW2aaXKrADR07Fupx.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/4qtSeiNTUEJ9AXSiAiYaAxRqXuZtJglr1XrPPaDS.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/sXn1JMrx1WoOFwwBl2cQeJUH8CXMnhYqXtDuzMto.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/7rvhYdF92bmxryidv707VZwFskILmOak8UH371h4.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/SALGPyA5XeSwpi0baHXedcFlCUSuAl3YTyHi9hXT.mpga"
+      ],
+      "note": "split arbitraire des 9 parties 'Le caractère divin' - à confirmer"
+    },
+    {
+      "classe": 3,
+      "numero": 8,
+      "titre": "L'Intégrité (2)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/OdWp7GCg5x1U7RV8Q85gtqWG02hd9zTAE548UowR.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/7TH567gxoaPeM2MHn6wSxJC3Dbfcpid6owIy5SVT.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/6SZzJRq6Wmei3rbwpfaYiEcqpHzYVORtWF7XMzNx.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/wSlV7CfZZz7ufDHCLV7cuz5pP9cCcsAZatApf6UL.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 9,
+      "titre": "La fidélité",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/diYjjz1rMum9htyavnNQUCuSdr7OjKre4cVBsY4k.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 3,
+      "numero": 10,
+      "titre": "Cinq Pierres de David (1)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/KUzPWxULIBST5xhEghOxv4XUGmxoh9q7LQSi2R0H.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/y056KNyttt1jlzEhT3XJnP1hep7PaiX3WIwF3Q3Z.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/DoI8QxPBATZCfg5G8cXPEm7AFKodlGBELbv1CLv5.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/r7AbHBRe4B2txl1MOSVzsGKa59z6fmHuqyFq4cpg.mpga"
+      ],
+      "note": "intro + pierres 1 à 3"
+    },
+    {
+      "classe": 3,
+      "numero": 11,
+      "titre": "Cinq Pierres de David (2)",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/M1I2YsMbdDrr5XcYzprCEZLIR0XdSVP9BtdgoqGf.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/TdyKv4eRHRn1EG7Orii3uuU8Ffs4CVRf8LJsYvOD.mpga"
+      ],
+      "note": "pierres 4 et 5"
+    },
+    {
+      "classe": 4,
+      "numero": 1,
+      "titre": "Cours introductif Classe 4",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/cours_introductif_ecole_4.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 4,
+      "numero": 2,
+      "titre": "Cœur du Porteur de Vie",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/2xyhh4AjX3oHeoGCXeQoNcvea295leR4xHypmyPd.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/wu9fs4HXQyUbnUIObzy8MkqCynqRmDVKjK3Pqu7j.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/NGrjmc83wJ7g7Tw6KWMmYrDsrOBM0zYCXuXXUsxC.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/aI0WUCtjv7rtTeHTOm4tmF3VtpQJ9JtI5Vw92n4S.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/ufxKGjigeiQLR8rqcqHfn6DAa2gCoAEZ9lReWesT.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/K0VHcx1HTIXMu7MXTtrfELp09QnBO9cwQPNrQNPq.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 4,
+      "numero": 3,
+      "titre": "Vaincre les maladies spirituelles du cœur",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/v4yyZB9WHslaPQCo7yvUs41bX2crI2Xa9a13XLFW.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/YDZ4mzAtt3JjRc4OCg9i4FYtAKB9Rd1PQdnmV3ek.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 4,
+      "numero": 4,
+      "titre": "L'Amour du Prochain",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/amour_du_prochain_file1.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/amour_du_prochain_file2.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/Cj59MsclNu7rt2eeO76JMFq2Speuq22tEmS0hTtp.mpga"
+      ],
+      "note": "fichiers 45-46 'L'AMOUR II-P3' possiblement liés - à vérifier"
+    },
+    {
+      "classe": 4,
+      "numero": 5,
+      "titre": "L'Onction",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/e4aUOqTTKessFjAHrtCp56yqlogETUbncUOBIQIF.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/eyVc5a0cpcsKFOvErw6DSbVBuEgsF19su7hBDEfp.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 4,
+      "numero": 6,
+      "titre": "La Relation d'Aide (1)",
+      "type": "officiel",
+      "audio": [],
+      "note": "audio manquant - à retrouver"
+    },
+    {
+      "classe": 4,
+      "numero": 7,
+      "titre": "La Relation d'Aide (2)",
+      "type": "officiel",
+      "audio": [],
+      "note": "audio manquant - à retrouver"
+    },
+    {
+      "classe": 4,
+      "numero": 8,
+      "titre": "La Voix d'Autorité",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/SYWW18XLj5KYu6m4dr2ohv4k0rvtytlr1OhsSp9s.mpga"
+      ],
+      "note": null
+    },
+    {
+      "classe": 4,
+      "numero": 9,
+      "titre": "Gagneurs d'âmes",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/GAGNEURS D'AMES 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/GAGNEURS D'AMES 2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/GAGNEURS D'AMES 3.mp3"
+      ],
+      "note": null
+    },
+    {
+      "classe": 4,
+      "numero": 10,
+      "titre": "Les 9 séductions qui guettent un Porteur de vie",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/97Rp29mrYQfZs8aH4ec8fL3B74xlkPd2YYTOPSnR.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/h6TQFrTlSJPVoLJqbfUkHdjYDWxJvjrNGLBlKiJS.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/uO9oz8qy7GGn09yjOvEdYW6PSw7Q7mi8tNKZehLi.mpga"
+      ],
+      "note": "fichier 100 'La séduction de l'orgueil' possiblement une 4e séduction - à vérifier"
+    },
+    {
+      "classe": 4,
+      "numero": 11,
+      "titre": "Comment demeurer un Porteur de vie",
+      "type": "officiel",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/wHQQyWHiJUL7ZoCbVnD9Nf6HIuDKhHecgQgu2OCM.mpga"
+      ],
+      "note": null
+    }
+  ],
+  "orientation": [
+    {
+      "titre": "La Prédication (module d'orientation, hors des 44 cours)",
+      "type": "orientation",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/predication_1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/predication_2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/predication_3.mp3"
+      ]
+    }
+  ],
+  "bonus": [
+    {
+      "titre": "Le chrétien dans ce monde (Padé Tokun)",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/haYVIsv7GZmE0RtH5poaAY35fEudl34pRtF1WQAP.mpga"
+      ]
+    },
+    {
+      "titre": "Les 7 secrets",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/bwVnLmm7uNGnRbQpyGJUdAmr1C1iviOf4g6HDbJx.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/vy2algqYB1iVkddfsyBHxKqsiKVvVHNHw295St9z.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/SnUeSnnkKnDpzo5YHDhBxPQKL5mjd3HhLYxh9DkZ.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/m1EAHO2iX6vl3y7pfVImcc9EcCLXLSn9tLB5y796.mpga"
+      ]
+    },
+    {
+      "titre": "Garder l'humilité",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/cYGjKldY4wnBRarovAcuTItRPJzgj3FsRgnahVK1.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/JQFVeimnXcSmeslizYBSL2KT8lL4NFa5ELCvxroW.mpga"
+      ]
+    },
+    {
+      "titre": "Marcher par l'Esprit",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/marcher_par l_Esprit_1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/marcher_par l_Esprit_3.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/marcher_par l_Esprit_2.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/marcher_par l_Esprit_4.mp3"
+      ]
+    },
+    {
+      "titre": "Cœur à Cœur",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/COEUR A COEUR 1.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/COEUR A COEUR 2.mp3"
+      ]
+    },
+    {
+      "titre": "La séduction de l'orgueil",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/vWeE5NgqISbvBMJYHKq26azrTLyVw1yX5MtP6fQc.mpga"
+      ]
+    },
+    {
+      "titre": "Les étapes pour communiquer la vie",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/4P3qmda64RTWgRNeZxLm61msfbn8oIqdejBBM0kH.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/kihpA8tlvLTwna3G8CgaDgK5gu5sorkfysxxCNhL.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/LNOwYicWlqaSWDBp5jBbA0pWrOidFDnjN1Od9PbN.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/D0U9gxcNRR1DRotoJka96kVuznUf1zFMIl90NSPA.mpga"
+      ]
+    },
+    {
+      "titre": "Cours introductif Porteur de Vie (générique)",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/V9NWxAAfDH12fQukygAQL7jLHtmi5gZ5kSTfcoSY.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/kjCWEmHPPqJeYm8X0lkbfBBjZ6ZzPYHMbF2UIm40.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/oDss0fy3LZWmRCp7Oji1JgncY3hOKu9JolKVCkRD.mpga"
+      ]
+    },
+    {
+      "titre": "L'Amour II - partie 3 (fin)",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/eeRdYnUGgvEMhyyYDNpgCjwnos2mrcsrjOf5yU1N.mpga",
+        "https://zoe.porteursdevie.org/storage/audio/soUjANpRk53WJeEQ9nHWKRI2INlj3i5LQtj14Ag4.mpga"
+      ]
+    },
+    {
+      "titre": "Grandir dans l'intimité (version alternative, doublon possible)",
+      "type": "bonus",
+      "audio": [
+        "https://zoe.porteursdevie.org/storage/audio/Grandir dans l'intimité 01.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/Grandir dans l'intimité 02.mp3",
+        "https://zoe.porteursdevie.org/storage/audio/Grandir dans l'intimité 03.mp3"
+      ]
+    }
+  ]
+}
