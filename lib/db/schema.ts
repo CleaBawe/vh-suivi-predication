@@ -58,7 +58,7 @@ export const themesExercice = pgTable("themes_exercice", {
   versetsBase: text("versets_base").array().notNull(),
   personnageBiblique: varchar("personnage_biblique", { length: 100 }).notNull(),
   approcheApotre: text("approche_apotre").notNull(),
-  constructionPredication: text("construction_predication").notNull(),
+  constructionPredication: text("construction_predication").array().notNull(),
   questionCoeur: text("question_coeur").notNull(),
 });
 

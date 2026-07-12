@@ -106,14 +106,23 @@ export function ExerciceClient({ themes }: { themes: ThemeData[] }) {
         </div>
 
         {/* 6. Construction de la prédication */}
-        <div className="rounded-2xl border border-vh-green-200 bg-vh-green-50 px-4 py-4 space-y-1.5">
+        <div className="rounded-2xl border border-vh-green-200 bg-vh-green-50 px-4 py-4 space-y-2.5">
           <div className="flex items-center gap-2">
             <ThreadIcon className="h-4 w-4 text-vh-green-600 shrink-0" />
             <p className="text-xs font-semibold text-vh-green-700 uppercase tracking-wide">
-              Construction de la prédication
+              Comment construire la prédication
             </p>
           </div>
-          <p className="text-sm text-vh-green-900 leading-relaxed">{selected.constructionPredication}</p>
+          <ol className="space-y-2">
+            {selected.constructionPredication.map((etape, i) => (
+              <li key={i} className="flex gap-2.5">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-vh-green-200 text-xs font-bold text-vh-green-700">
+                  {i + 1}
+                </span>
+                <span className="text-sm text-vh-green-900 leading-relaxed">{etape}</span>
+              </li>
+            ))}
+          </ol>
         </div>
 
         {/* 7. Question qui touche le cœur — encadré or distinct */}

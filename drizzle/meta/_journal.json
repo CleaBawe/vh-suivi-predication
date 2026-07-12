@@ -15,6 +15,13 @@
       "when": 1783877154683,
       "tag": "0001_add_courses_titre_unique",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1783883606886,
+      "tag": "0002_themes_construction_predication_array",
+      "breakpoints": true
     }
   ]
 }

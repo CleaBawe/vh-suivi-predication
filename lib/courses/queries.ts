@@ -43,7 +43,7 @@ export type ThemeData = {
   versetsBase: string[];
   personnageBiblique: string;
   approcheApotre: string;
-  constructionPredication: string;
+  constructionPredication: string[];
   questionCoeur: string;
 };
 
