@@ -146,6 +146,23 @@ export async function getCommunauteSubmissions(): Promise<CommunauteSubmission[]
   return rows as CommunauteSubmission[];
 }
 
+export async function getRandomTheme(): Promise<ThemeData | null> {
+  const all = await db.select().from(themesExercice);
+  if (all.length === 0) return null;
+  const t = all[Math.floor(Math.random() * all.length)];
+  return {
+    id: t.id,
+    titre: t.titre,
+    coursCorrespondant: t.coursCorrespondant,
+    classe: t.classe,
+    versetsBase: t.versetsBase,
+    personnageBiblique: t.personnageBiblique,
+    approcheApotre: t.approcheApotre,
+    constructionPredication: t.constructionPredication,
+    questionCoeur: t.questionCoeur,
+  };
+}
+
 export async function getRandomInspiration(
   excludeId?: number
 ): Promise<InspirationData | null> {

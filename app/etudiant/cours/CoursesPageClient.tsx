@@ -3,8 +3,9 @@
 import { useState, useCallback } from "react";
 import { CourseCard } from "./CourseCard";
 import { InspirationToast } from "./InspirationToast";
+import { OrientationThemeModal } from "./OrientationThemeModal";
 import { toggleListened } from "@/lib/courses/actions";
-import type { CourseData, InspirationData } from "@/lib/courses/queries";
+import type { CourseData, InspirationData, ThemeData } from "@/lib/courses/queries";
 
 type Props = {
   orientation: CourseData | null;
@@ -33,6 +34,7 @@ export function CoursesPageClient({
   const [lastInspirationId, setLastInspirationId] = useState<number | undefined>(
     bannerInspiration?.id
   );
+  const [orientationTheme, setOrientationTheme] = useState<ThemeData | null>(null);
   const [openClasses, setOpenClasses] = useState<Set<number>>(new Set([1]));
 
   const handleToggleDone = useCallback(
@@ -46,7 +48,7 @@ export function CoursesPageClient({
       });
 
       try {
-        const { done, inspiration } = await toggleListened(courseId, lastInspirationId);
+        const { done, inspiration, orientationTheme: theme } = await toggleListened(courseId, lastInspirationId);
         // Sync with server response (in case of conflict)
         setProgressMap((prev) => {
           const next = new Map(prev);
@@ -57,6 +59,9 @@ export function CoursesPageClient({
         if (inspiration) {
           setToast(inspiration);
           setLastInspirationId(inspiration.id);
+        }
+        if (theme) {
+          setOrientationTheme(theme);
         }
         return inspiration;
       } catch {
@@ -158,6 +163,14 @@ export function CoursesPageClient({
           key={toast.id}
           inspiration={toast}
           onClose={() => setToast(null)}
+        />
+      )}
+
+      {/* Orientation theme suggestion modal */}
+      {orientationTheme && (
+        <OrientationThemeModal
+          theme={orientationTheme}
+          onClose={() => setOrientationTheme(null)}
         />
       )}
     </div>

@@ -1,15 +1,15 @@
 "use server";
 
-import { and, eq } from "drizzle-orm";
+import { and, eq, isNotNull } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { progress, submissions } from "@/lib/db/schema";
+import { courses, progress, submissions } from "@/lib/db/schema";
 import { getSession } from "@/lib/auth/session";
-import { getRandomInspiration, type InspirationData } from "./queries";
+import { getRandomInspiration, getRandomTheme, type InspirationData, type ThemeData } from "./queries";
 
 export async function toggleListened(
   courseId: number,
   excludeInspirationId?: number
-): Promise<{ done: boolean; inspiration: InspirationData | null }> {
+): Promise<{ done: boolean; inspiration: InspirationData | null; orientationTheme: ThemeData | null }> {
   const session = await getSession();
   if (!session) throw new Error("Non authentifié");
 
@@ -39,7 +39,24 @@ export async function toggleListened(
     ? await getRandomInspiration(excludeInspirationId)
     : null;
 
-  return { done: newDone, inspiration };
+  // Suggest a random exercise theme when the orientation module is checked for
+  // the first time, or again if the student hasn't done any exercise yet.
+  let orientationTheme: ThemeData | null = null;
+  if (newDone) {
+    const course = await db.query.courses.findFirst({ where: eq(courses.id, courseId) });
+    if (course?.type === "orientation") {
+      const [exerciseSubmission] = await db
+        .select({ id: submissions.id })
+        .from(submissions)
+        .where(and(eq(submissions.userId, session.userId), isNotNull(submissions.themeId)))
+        .limit(1);
+      if (!exerciseSubmission) {
+        orientationTheme = await getRandomTheme();
+      }
+    }
+  }
+
+  return { done: newDone, inspiration, orientationTheme };
 }
 
 export async function saveProgress(
