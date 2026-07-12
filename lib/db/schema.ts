@@ -26,7 +26,9 @@ export const courses = pgTable("courses", {
   titre: varchar("titre", { length: 200 }).notNull(),
   type: courseTypeEnum("type").notNull(),
   statutAudio: audioStatusEnum("statut_audio").notNull().default("ok"),
-});
+}, (t) => [
+  unique("courses_titre_unique").on(t.titre),
+]);
 
 export const courseAudioParts = pgTable("course_audio_parts", {
   id: serial("id").primaryKey(),
