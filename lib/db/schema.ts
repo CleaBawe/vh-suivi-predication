@@ -48,10 +48,21 @@ export const progress = pgTable("progress", {
   unique("progress_user_course_unique").on(t.userId, t.courseId),
 ]);
 
+export const themesExercice = pgTable("themes_exercice", {
+  id: serial("id").primaryKey(),
+  titre: varchar("titre", { length: 200 }).notNull(),
+  penseeCentrale: varchar("pensee_centrale", { length: 300 }).notNull(),
+  personnageBiblique: varchar("personnage_biblique", { length: 100 }).notNull(),
+  versetsBase: text("versets_base").array().notNull(),
+  filConducteur: text("fil_conducteur").notNull(),
+  tips: text("tips").array().notNull(),
+});
+
 export const submissions = pgTable("submissions", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
-  courseId: integer("course_id").notNull().references(() => courses.id, { onDelete: "cascade" }),
+  courseId: integer("course_id").references(() => courses.id, { onDelete: "cascade" }),
+  themeId: integer("theme_id").references(() => themesExercice.id, { onDelete: "cascade" }),
   type: submissionTypeEnum("type").notNull(),
   contenuOuUrl: text("contenu_ou_url").notNull(),
   partageCommunaute: boolean("partage_communaute").notNull().default(true),
@@ -75,7 +86,7 @@ export const inspirations = pgTable("inspirations", {
   conseil: text("conseil").notNull(),
 });
 
-// ─── Relations (pour db.query.*) ────────────────────────────────────────────
+// ─── Relations ───────────────────────────────────────────────────────────────
 
 export const usersRelations = relations(users, ({ many }) => ({
   progress: many(progress),
@@ -96,9 +107,14 @@ export const progressRelations = relations(progress, ({ one }) => ({
   course: one(courses, { fields: [progress.courseId], references: [courses.id] }),
 }));
 
+export const themesExerciceRelations = relations(themesExercice, ({ many }) => ({
+  submissions: many(submissions),
+}));
+
 export const submissionsRelations = relations(submissions, ({ one, many }) => ({
   user: one(users, { fields: [submissions.userId], references: [users.id] }),
   course: one(courses, { fields: [submissions.courseId], references: [courses.id] }),
+  theme: one(themesExercice, { fields: [submissions.themeId], references: [themesExercice.id] }),
   feedback: many(adminFeedback),
 }));
 

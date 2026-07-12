@@ -113,6 +113,31 @@ export async function submitTraining(
   return { inspiration };
 }
 
+export async function submitTrainingForTheme(
+  themeId: number,
+  type: "audio" | "texte",
+  contenuOuUrl: string,
+  partageCommunaute: boolean,
+  versetPorteur: string | null,
+  excludeInspirationId?: number
+): Promise<{ inspiration: InspirationData | null }> {
+  const session = await getSession();
+  if (!session) throw new Error("Non authentifié");
+
+  await db.insert(submissions).values({
+    userId: session.userId,
+    themeId,
+    type,
+    contenuOuUrl,
+    partageCommunaute,
+    versetPorteur: versetPorteur || null,
+    createdAt: new Date(),
+  });
+
+  const inspiration = await getRandomInspiration(excludeInspirationId);
+  return { inspiration };
+}
+
 export async function uploadAudioBlob(formData: FormData): Promise<string> {
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     throw new Error("BLOB_READ_WRITE_TOKEN non configuré");
@@ -122,11 +147,15 @@ export async function uploadAudioBlob(formData: FormData): Promise<string> {
   if (!session) throw new Error("Non authentifié");
 
   const file = formData.get("file") as File;
-  const courseId = formData.get("courseId") as string;
   if (!file) throw new Error("Fichier manquant");
 
+  // Accept either courseId (existing flow) or themeId (exercise flow)
+  const courseId = formData.get("courseId") as string | null;
+  const themeId = formData.get("themeId") as string | null;
+  const slug = themeId ? `theme${themeId}` : (courseId ?? "unknown");
+
   const ext = file.type.includes("mp4") ? "mp4" : "webm";
-  const path = `submissions/${session.userId}/${courseId}_${Date.now()}.${ext}`;
+  const path = `submissions/${session.userId}/${slug}_${Date.now()}.${ext}`;
 
   const { put } = await import("@vercel/blob");
   const blob = await put(path, file, {

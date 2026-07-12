@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTimer } from "./useTimer";
 import { AudioRecorder } from "./AudioRecorder";
 import { InspirationCard } from "./InspirationCard";
-import { submitTraining, uploadAudioBlob } from "@/lib/courses/actions";
+import { submitTraining, submitTrainingForTheme, uploadAudioBlob } from "@/lib/courses/actions";
 import type { InspirationData } from "@/lib/courses/queries";
 
 // ─── Step machine ────────────────────────────────────────────────────────────
@@ -41,21 +41,9 @@ function CircularTimer({ remaining, duration, isFinished }: CircularTimerProps) 
   return (
     <div className="relative flex items-center justify-center">
       <svg width="120" height="120" viewBox="0 0 120 120">
-        {/* Background circle */}
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#ede9fe" strokeWidth="8" />
         <circle
-          cx="60"
-          cy="60"
-          r="52"
-          fill="none"
-          stroke="#ede9fe"
-          strokeWidth="8"
-        />
-        {/* Progress arc */}
-        <circle
-          cx="60"
-          cy="60"
-          r="52"
-          fill="none"
+          cx="60" cy="60" r="52" fill="none"
           stroke={isFinished ? "#22c55e" : "#7c3aed"}
           strokeWidth="8"
           strokeLinecap="round"
@@ -65,7 +53,6 @@ function CircularTimer({ remaining, duration, isFinished }: CircularTimerProps) 
           style={{ transition: "stroke-dashoffset 0.5s linear, stroke 0.3s ease" }}
         />
       </svg>
-      {/* Time display centered over SVG */}
       <div className="absolute inset-0 flex items-center justify-center">
         <span className={`text-2xl font-bold tabular-nums ${isFinished ? "text-green-600" : "text-vh-green-700"}`}>
           {formatTime(remaining)}
@@ -78,37 +65,35 @@ function CircularTimer({ remaining, duration, isFinished }: CircularTimerProps) 
 // ─── Main component ──────────────────────────────────────────────────────────
 
 type Props = {
-  courseId: number;
-  courseTitre: string;
-};
+  titre: string;
+  backHref: string;
+  continueLabel?: string;
+} & (
+  | { courseId: number; themeId?: never }
+  | { themeId: number; courseId?: never }
+);
 
-export function TrainClient({ courseId, courseTitre }: Props) {
+export function TrainClient({ titre, backHref, continueLabel = "Retour aux cours", ...context }: Props) {
   const router = useRouter();
   const [step, setStep] = useState<Step>({ name: "prep" });
 
   const prepTimer = useTimer(300);
   const preachTimer = useTimer(300);
 
-  // Prep step state
   const [versetPorteur, setVersetPorteur] = useState("");
-
-  // Preaching step state
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [texte, setTexte] = useState("");
   const [partager, setPartager] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
-  // Track last inspiration ID to avoid repeats
   const lastInspirationIdRef = useRef<number | undefined>(undefined);
 
-  // Auto-start prep timer on mount
   useEffect(() => {
     prepTimer.start();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Auto-advance from prep to choosing when timer finishes
   useEffect(() => {
     if (prepTimer.isFinished && step.name === "prep") {
       setStep({ name: "choosing" });
@@ -141,7 +126,11 @@ export function TrainClient({ courseId, courseTitre }: Props) {
         if (!audioBlob) throw new Error("Aucun enregistrement audio");
         const fd = new FormData();
         fd.append("file", audioBlob, `recording.${audioBlob.type.includes("mp4") ? "mp4" : "webm"}`);
-        fd.append("courseId", String(courseId));
+        if ("courseId" in context && context.courseId) {
+          fd.append("courseId", String(context.courseId));
+        } else if ("themeId" in context && context.themeId) {
+          fd.append("themeId", String(context.themeId));
+        }
         contenuOuUrl = await uploadAudioBlob(fd);
       } else {
         contenuOuUrl = texte.trim();
@@ -151,14 +140,27 @@ export function TrainClient({ courseId, courseTitre }: Props) {
       setUploading(false);
       setStep({ name: "submitting" });
 
-      const { inspiration } = await submitTraining(
-        courseId,
-        mode,
-        contenuOuUrl,
-        partager,
-        versetPorteur.trim() || null,
-        lastInspirationIdRef.current
-      );
+      let inspiration: InspirationData | null = null;
+
+      if ("courseId" in context && context.courseId) {
+        ({ inspiration } = await submitTraining(
+          context.courseId,
+          mode,
+          contenuOuUrl,
+          partager,
+          versetPorteur.trim() || null,
+          lastInspirationIdRef.current
+        ));
+      } else if ("themeId" in context && context.themeId) {
+        ({ inspiration } = await submitTrainingForTheme(
+          context.themeId,
+          mode,
+          contenuOuUrl,
+          partager,
+          versetPorteur.trim() || null,
+          lastInspirationIdRef.current
+        ));
+      }
 
       if (inspiration) lastInspirationIdRef.current = inspiration.id;
       setStep({ name: "done", inspiration });
@@ -168,7 +170,7 @@ export function TrainClient({ courseId, courseTitre }: Props) {
         err instanceof Error ? err.message : "Une erreur est survenue. Réessaie."
       );
     }
-  }, [step, audioBlob, texte, courseId, partager, versetPorteur]);
+  }, [step, audioBlob, texte, context, partager, versetPorteur]);
 
   // ── Render: done ────────────────────────────────────────────────────────────
   if (step.name === "done") {
@@ -182,10 +184,10 @@ export function TrainClient({ courseId, courseTitre }: Props) {
           </div>
           <h2 className="text-xl font-bold text-gray-900">Entraînement enregistré !</h2>
           <button
-            onClick={() => router.push("/etudiant/cours")}
+            onClick={() => router.push(backHref)}
             className="w-full max-w-md rounded-2xl bg-vh-green-600 px-4 py-4 text-base font-semibold text-white active:scale-95 transition-transform"
           >
-            Retour aux cours
+            {continueLabel}
           </button>
         </div>
       );
@@ -193,7 +195,8 @@ export function TrainClient({ courseId, courseTitre }: Props) {
     return (
       <InspirationCard
         inspiration={step.inspiration}
-        onContinue={() => router.push("/etudiant/cours")}
+        onContinue={() => router.push(backHref)}
+        continueLabel={continueLabel}
       />
     );
   }
@@ -214,19 +217,16 @@ export function TrainClient({ courseId, courseTitre }: Props) {
   if (step.name === "prep") {
     return (
       <div className="flex flex-col px-4 pt-4 pb-8 space-y-8">
-        {/* Back */}
-        <Link href="/etudiant/cours" className="inline-flex items-center gap-1.5 text-sm text-gray-400 active:text-gray-600">
+        <Link href={backHref} className="inline-flex items-center gap-1.5 text-sm text-gray-400 active:text-gray-600">
           <BackIcon />
-          Mes cours
+          {continueLabel}
         </Link>
 
-        {/* Title */}
         <div>
           <p className="text-xs text-gray-400 mb-0.5">S&apos;entraîner sur</p>
-          <h1 className="text-lg font-bold text-gray-900 leading-snug">{courseTitre}</h1>
+          <h1 className="text-lg font-bold text-gray-900 leading-snug">{titre}</h1>
         </div>
 
-        {/* Timer */}
         <div className="flex flex-col items-center gap-2">
           <p className="text-sm font-medium text-gray-600">Temps de préparation</p>
           <CircularTimer
@@ -239,7 +239,6 @@ export function TrainClient({ courseId, courseTitre }: Props) {
           )}
         </div>
 
-        {/* Verset porteur */}
         <div>
           <label className="mb-1.5 block text-sm font-medium text-gray-700">
             Verset porteur{" "}
@@ -253,7 +252,6 @@ export function TrainClient({ courseId, courseTitre }: Props) {
           />
         </div>
 
-        {/* CTA */}
         <button
           onClick={goToChoosing}
           className="flex w-full items-center justify-between rounded-2xl bg-vh-green-600 px-4 py-4 text-sm font-semibold text-white shadow-sm active:scale-95 transition-transform"
@@ -269,17 +267,17 @@ export function TrainClient({ courseId, courseTitre }: Props) {
   if (step.name === "choosing") {
     return (
       <div className="flex flex-col px-4 pt-4 pb-8 space-y-6">
-        <Link href="/etudiant/cours" className="inline-flex items-center gap-1.5 text-sm text-gray-400 active:text-gray-600">
+        <Link href={backHref} className="inline-flex items-center gap-1.5 text-sm text-gray-400 active:text-gray-600">
           <BackIcon />
-          Mes cours
+          {continueLabel}
         </Link>
 
         <div>
           <h1 className="text-lg font-bold text-gray-900">Comment veux-tu t&apos;entraîner ?</h1>
-          <p className="mt-1 text-sm text-gray-500">{courseTitre}</p>
+          <p className="mt-1 text-sm text-gray-500">{titre}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => chooseMode("audio")}
             className="flex flex-col items-center gap-3 rounded-2xl border-2 border-vh-green-200 bg-vh-green-50 px-4 py-6 text-center active:border-vh-green-400 active:bg-vh-green-100 transition-colors min-h-[160px] justify-center"
@@ -317,19 +315,18 @@ export function TrainClient({ courseId, courseTitre }: Props) {
 
   return (
     <div className="flex flex-col px-4 pt-4 pb-8 space-y-6">
-      <Link href="/etudiant/cours" className="inline-flex items-center gap-1.5 text-sm text-gray-400 active:text-gray-600">
+      <Link href={backHref} className="inline-flex items-center gap-1.5 text-sm text-gray-400 active:text-gray-600">
         <BackIcon />
-        Mes cours
+        {continueLabel}
       </Link>
 
       <div>
         <h1 className="text-lg font-bold text-gray-900">
           {isAudio ? "Enregistre ta prédication" : "Écris ta prédication"}
         </h1>
-        <p className="mt-1 text-sm text-gray-500">{courseTitre}</p>
+        <p className="mt-1 text-sm text-gray-500">{titre}</p>
       </div>
 
-      {/* Timer */}
       <div className="flex flex-col items-center gap-2">
         <CircularTimer
           remaining={preachTimer.remaining}
@@ -345,7 +342,6 @@ export function TrainClient({ courseId, courseTitre }: Props) {
         )}
       </div>
 
-      {/* Mode-specific input */}
       {isAudio ? (
         <AudioRecorder
           shouldStop={preachTimer.isFinished}
@@ -366,7 +362,6 @@ export function TrainClient({ courseId, courseTitre }: Props) {
         </div>
       )}
 
-      {/* Privacy toggle */}
       <label className="flex items-center gap-3 cursor-pointer">
         <input
           type="checkbox"
@@ -379,14 +374,12 @@ export function TrainClient({ courseId, courseTitre }: Props) {
         </span>
       </label>
 
-      {/* Upload error */}
       {uploadError && (
         <div className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3">
           <p className="text-sm text-red-700">{uploadError}</p>
         </div>
       )}
 
-      {/* Submit button */}
       <button
         onClick={handleSubmit}
         disabled={!canSubmit || uploading}

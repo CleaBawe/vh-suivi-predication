@@ -5,9 +5,10 @@ import type { InspirationData } from "@/lib/courses/queries";
 type Props = {
   inspiration: InspirationData;
   onContinue: () => void;
+  continueLabel?: string;
 };
 
-export function InspirationCard({ inspiration, onContinue }: Props) {
+export function InspirationCard({ inspiration, onContinue, continueLabel = "Retour aux cours" }: Props) {
   return (
     <div className="flex min-h-[calc(100dvh-80px)] flex-col items-center justify-between px-4 py-8">
       {/* Success header */}
@@ -44,7 +45,7 @@ export function InspirationCard({ inspiration, onContinue }: Props) {
         onClick={onContinue}
         className="w-full max-w-md rounded-2xl bg-vh-green-600 px-4 py-4 text-base font-semibold text-white shadow-sm active:scale-95 transition-transform"
       >
-        Retour aux cours
+        {continueLabel}
       </button>
     </div>
   );

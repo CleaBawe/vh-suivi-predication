@@ -27,7 +27,12 @@ export default async function EntrainerPage({ searchParams }: Props) {
 
   return (
     <div className="flex flex-col min-h-full bg-white">
-      <TrainClient courseId={course.id} courseTitre={course.titre} />
+      <TrainClient
+        courseId={course.id}
+        titre={course.titre}
+        backHref="/etudiant/cours"
+        continueLabel="Retour aux cours"
+      />
     </div>
   );
 }

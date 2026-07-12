@@ -7,7 +7,7 @@ type Props = {
   submissions: CommunauteSubmission[];
 };
 
-type ClasseFilter = "tous" | "orientation" | 1 | 2 | 3 | 4;
+type ClasseFilter = "tous" | "exercice" | "orientation" | 1 | 2 | 3 | 4;
 
 function formatDate(date: Date): string {
   const d = new Date(date);
@@ -22,13 +22,25 @@ function formatDate(date: Date): string {
 function SubmissionCard({ s }: { s: CommunauteSubmission }) {
   const [expanded, setExpanded] = useState(false);
   const author = s.auteurNom || s.auteurMatricule;
-  const classeLabel =
-    s.courseType === "orientation"
-      ? "Orientation"
-      : s.courseClasse
-      ? `Classe ${s.courseClasse}`
-      : "";
+
+  let sourceLabel: string;
+  let sourceTitle: string;
+
+  if (s.themeId) {
+    sourceLabel = "Exercice";
+    sourceTitle = s.themeTitre ?? "";
+  } else {
+    sourceLabel =
+      s.courseType === "orientation"
+        ? "Orientation"
+        : s.courseClasse
+        ? `Classe ${s.courseClasse}`
+        : "";
+    sourceTitle = s.courseTitre ?? "";
+  }
+
   const isLong = s.type === "texte" && s.contenuOuUrl.length > 200;
+  const isExercice = !!s.themeId;
 
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-4 space-y-3">
@@ -36,8 +48,13 @@ function SubmissionCard({ s }: { s: CommunauteSubmission }) {
         <div className="min-w-0">
           <p className="font-semibold text-gray-900 text-sm truncate">{author}</p>
           <p className="text-xs text-gray-400 mt-0.5">
-            {classeLabel && <span className="text-vh-green-500 font-medium">{classeLabel} · </span>}
-            {s.courseTitre}
+            {sourceLabel && (
+              <span className={`font-medium ${isExercice ? "text-vh-gold-500" : "text-vh-green-500"}`}>
+                {sourceLabel}
+                {sourceTitle ? " · " : ""}
+              </span>
+            )}
+            {sourceTitle}
           </p>
         </div>
         <p className="text-xs text-gray-400 shrink-0 mt-0.5">{formatDate(s.createdAt)}</p>
@@ -86,6 +103,7 @@ export function CommunauteClient({ submissions }: Props) {
 
   const classeOptions: { value: ClasseFilter; label: string }[] = [
     { value: "tous", label: "Tous" },
+    { value: "exercice", label: "Exercice" },
     { value: "orientation", label: "Orientation" },
     { value: 1, label: "Classe 1" },
     { value: 2, label: "Classe 2" },
@@ -98,14 +116,18 @@ export function CommunauteClient({ submissions }: Props) {
       submissions
         .filter((s) => {
           if (classeFilter === "tous") return true;
+          if (classeFilter === "exercice") return !!s.themeId;
           if (classeFilter === "orientation") return s.courseType === "orientation";
           return s.courseClasse === classeFilter;
         })
-        .map((s) => [s.courseId, { id: s.courseId, titre: s.courseTitre }])
+        .filter((s) => !s.themeId) // course submissions only for dropdown
+        .map((s) => [s.courseId, { id: s.courseId!, titre: s.courseTitre! }])
     ).values()
   ).sort((a, b) => a.titre.localeCompare(b.titre));
 
   const filtered = submissions.filter((s) => {
+    if (classeFilter === "exercice") return !!s.themeId;
+    if (s.themeId) return classeFilter === "tous"; // theme submissions only show under "Tous"
     if (classeFilter !== "tous") {
       if (classeFilter === "orientation" && s.courseType !== "orientation") return false;
       if (typeof classeFilter === "number" && s.courseClasse !== classeFilter) return false;
@@ -123,42 +145,42 @@ export function CommunauteClient({ submissions }: Props) {
     <div className="flex flex-col min-h-full">
       {/* Filters */}
       <div className="sticky top-0 z-10 bg-gray-50 px-4 pt-2 pb-2">
-      <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 space-y-3">
-        {/* Classe chips */}
-        <div className="flex gap-2 overflow-x-auto scrollbar-none pb-0.5">
-          {classeOptions.map(({ value, label }) => (
-            <button
-              key={String(value)}
-              onClick={() => handleClasseChange(value)}
-              className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                classeFilter === value
-                  ? "bg-vh-green-600 text-white"
-                  : "bg-gray-100 text-gray-600 active:bg-gray-200"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
-        {/* Course select — only shown when a classe is selected and has multiple courses */}
-        {coursesInFilter.length > 1 && (
-          <select
-            value={courseFilter === "tous" ? "tous" : String(courseFilter)}
-            onChange={(e) =>
-              setCourseFilter(e.target.value === "tous" ? "tous" : Number(e.target.value))
-            }
-            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 focus:border-vh-green-400 focus:outline-none focus:ring-2 focus:ring-vh-green-100"
-          >
-            <option value="tous">Tous les cours</option>
-            {coursesInFilter.map((c) => (
-              <option key={c.id} value={String(c.id)}>
-                {c.titre}
-              </option>
+        <div className="rounded-2xl bg-white border border-gray-100 px-4 py-3 space-y-3">
+          <div className="flex gap-2 overflow-x-auto scrollbar-none pb-0.5">
+            {classeOptions.map(({ value, label }) => (
+              <button
+                key={String(value)}
+                onClick={() => handleClasseChange(value)}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  classeFilter === value
+                    ? value === "exercice"
+                      ? "bg-vh-gold-500 text-white"
+                      : "bg-vh-green-600 text-white"
+                    : "bg-gray-100 text-gray-600 active:bg-gray-200"
+                }`}
+              >
+                {label}
+              </button>
             ))}
-          </select>
-        )}
-      </div>
+          </div>
+
+          {classeFilter !== "exercice" && coursesInFilter.length > 1 && (
+            <select
+              value={courseFilter === "tous" ? "tous" : String(courseFilter)}
+              onChange={(e) =>
+                setCourseFilter(e.target.value === "tous" ? "tous" : Number(e.target.value))
+              }
+              className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 focus:border-vh-green-400 focus:outline-none focus:ring-2 focus:ring-vh-green-100"
+            >
+              <option value="tous">Tous les cours</option>
+              {coursesInFilter.map((c) => (
+                <option key={c.id} value={String(c.id)}>
+                  {c.titre}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
       </div>
 
       {/* Feed */}

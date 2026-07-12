@@ -1,6 +1,6 @@
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq, isNotNull } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { courses, progress, inspirations, submissions, users } from "@/lib/db/schema";
+import { courses, progress, inspirations, submissions, users, themesExercice } from "@/lib/db/schema";
 
 export type InspirationData = {
   id: number;
@@ -35,6 +35,16 @@ export type CourseData = {
   hasSubmission: boolean;
 };
 
+export type ThemeData = {
+  id: number;
+  titre: string;
+  penseeCentrale: string;
+  personnageBiblique: string;
+  versetsBase: string[];
+  filConducteur: string;
+  tips: string[];
+};
+
 export async function getCoursesWithProgress(userId: number): Promise<CourseData[]> {
   const [allCourses, progressRecords, submittedRecords] = await Promise.all([
     db.query.courses.findMany({
@@ -45,7 +55,7 @@ export async function getCoursesWithProgress(userId: number): Promise<CourseData
     db
       .selectDistinct({ courseId: submissions.courseId })
       .from(submissions)
-      .where(eq(submissions.userId, userId)),
+      .where(and(eq(submissions.userId, userId), isNotNull(submissions.courseId))),
   ]);
 
   const progressMap = new Map(
@@ -55,7 +65,9 @@ export async function getCoursesWithProgress(userId: number): Promise<CourseData
     ])
   );
 
-  const submittedIds = new Set(submittedRecords.map((r) => r.courseId));
+  const submittedIds = new Set(
+    submittedRecords.map((r) => r.courseId).filter((id): id is number => id !== null)
+  );
 
   return allCourses.map((c) => ({
     id: c.id,
@@ -70,6 +82,19 @@ export async function getCoursesWithProgress(userId: number): Promise<CourseData
   }));
 }
 
+export async function getThemesExercice(): Promise<ThemeData[]> {
+  const rows = await db.select().from(themesExercice).orderBy(themesExercice.id);
+  return rows.map((r) => ({
+    id: r.id,
+    titre: r.titre,
+    penseeCentrale: r.penseeCentrale,
+    personnageBiblique: r.personnageBiblique,
+    versetsBase: r.versetsBase,
+    filConducteur: r.filConducteur,
+    tips: r.tips,
+  }));
+}
+
 export type CommunauteSubmission = {
   id: number;
   type: "audio" | "texte";
@@ -78,11 +103,15 @@ export type CommunauteSubmission = {
   createdAt: Date;
   auteurNom: string | null;
   auteurMatricule: string;
-  courseId: number;
-  courseTitre: string;
+  // Course submission fields
+  courseId: number | null;
+  courseTitre: string | null;
   courseClasse: number | null;
   courseNumero: number | null;
-  courseType: "officiel" | "orientation" | "bonus";
+  courseType: "officiel" | "orientation" | "bonus" | null;
+  // Theme submission fields
+  themeId: number | null;
+  themeTitre: string | null;
 };
 
 export async function getCommunauteSubmissions(): Promise<CommunauteSubmission[]> {
@@ -100,14 +129,17 @@ export async function getCommunauteSubmissions(): Promise<CommunauteSubmission[]
       courseClasse: courses.classe,
       courseNumero: courses.numero,
       courseType: courses.type,
+      themeId: themesExercice.id,
+      themeTitre: themesExercice.titre,
     })
     .from(submissions)
     .innerJoin(users, eq(submissions.userId, users.id))
-    .innerJoin(courses, eq(submissions.courseId, courses.id))
+    .leftJoin(courses, eq(submissions.courseId, courses.id))
+    .leftJoin(themesExercice, eq(submissions.themeId, themesExercice.id))
     .where(eq(submissions.partageCommunaute, true))
     .orderBy(desc(submissions.createdAt));
 
-  return rows;
+  return rows as CommunauteSubmission[];
 }
 
 export async function getRandomInspiration(

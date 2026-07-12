@@ -13,7 +13,8 @@
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio",
     "db:seed": "dotenv -e .env.local -- tsx scripts/seed.ts",
     "db:seed-admin": "dotenv -e .env.local -- tsx scripts/seed-admin.ts",
-    "db:seed-inspirations": "dotenv -e .env.local -- tsx scripts/seed-inspirations.ts"
+    "db:seed-inspirations": "dotenv -e .env.local -- tsx scripts/seed-inspirations.ts",
+    "db:seed-themes": "dotenv -e .env.local -- tsx scripts/seed-themes.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
