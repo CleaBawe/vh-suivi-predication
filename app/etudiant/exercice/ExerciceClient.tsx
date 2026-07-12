@@ -51,7 +51,7 @@ export function ExerciceClient({ themes }: { themes: ThemeData[] }) {
   // ── Detail view ──────────────────────────────────────────────────────────────
   if (view === "detail" && selected) {
     return (
-      <div className="flex flex-col px-4 pt-4 pb-8 space-y-6">
+      <div className="flex flex-col px-4 pt-4 pb-8 space-y-5">
         {/* Back */}
         <button
           onClick={backToGrid}
@@ -69,77 +69,70 @@ export function ExerciceClient({ themes }: { themes: ThemeData[] }) {
           </div>
         )}
 
-        {/* Title + pensée centrale */}
-        <div className="rounded-2xl bg-vh-green-50 border border-vh-green-200 px-5 py-5 space-y-2">
-          <h1 className="text-xl font-bold text-vh-green-900 leading-snug">{selected.titre}</h1>
-          <p className="text-sm font-medium text-vh-green-600 leading-relaxed">
-            {selected.penseeCentrale}
-          </p>
-        </div>
-
-        {/* Meta grid */}
-        <div className="space-y-4">
-          {/* Personnage */}
-          <div className="flex gap-3">
-            <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-vh-gold-300/20">
-              <PersonIcon className="h-4 w-4 text-vh-gold-500" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Personnage biblique</p>
-              <p className="text-sm font-medium text-gray-800 mt-0.5">{selected.personnageBiblique}</p>
-            </div>
-          </div>
-
-          {/* Versets */}
-          <div className="flex gap-3">
-            <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-vh-green-100">
-              <BookIcon className="h-4 w-4 text-vh-green-600" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Versets de base</p>
-              <div className="flex flex-wrap gap-1.5 mt-1.5">
-                {selected.versetsBase.map((v) => (
-                  <span
-                    key={v}
-                    className="rounded-full bg-vh-green-100 px-3 py-1 text-xs font-semibold text-vh-green-700"
-                  >
-                    {v}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Fil conducteur */}
-          <div className="flex gap-3">
-            <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-vh-green-100">
-              <ThreadIcon className="h-4 w-4 text-vh-green-600" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Fil conducteur</p>
-              <p className="text-sm text-gray-700 mt-0.5 italic">{selected.filConducteur}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Tips */}
+        {/* 1. Titre */}
         <div>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
-            Pistes d&apos;approche
+          <h1 className="text-xl font-bold text-gray-900 leading-snug">{selected.titre}</h1>
+          {/* 2. Cours correspondant + Classe */}
+          <p className="mt-1 text-sm text-gray-400">
+            {selected.coursCorrespondant}
+            {selected.classe && (
+              <span className="ml-2 inline-block rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-500">
+                {selected.classe}
+              </span>
+            )}
           </p>
-          <ol className="space-y-2.5">
-            {selected.tips.map((tip, i) => (
-              <li key={i} className="flex gap-3 items-start">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-vh-green-600 text-white text-xs font-bold">
-                  {i + 1}
-                </span>
-                <p className="text-sm text-gray-700 leading-relaxed">{tip}</p>
-              </li>
-            ))}
-          </ol>
         </div>
 
-        {/* CTA */}
+        {/* 3. Personnage + 4. Versets — sur une ligne compacte */}
+        <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-2 rounded-2xl bg-vh-gold-300/15 px-3 py-2">
+            <PersonIcon className="h-4 w-4 text-vh-gold-500 shrink-0" />
+            <span className="text-sm font-medium text-gray-800">{selected.personnageBiblique}</span>
+          </div>
+          <div className="flex items-center gap-2 rounded-2xl bg-vh-green-100 px-3 py-2">
+            <BookIcon className="h-4 w-4 text-vh-green-600 shrink-0" />
+            <span className="text-sm font-medium text-vh-green-700">
+              {selected.versetsBase.join(" · ")}
+            </span>
+          </div>
+        </div>
+
+        {/* 5. Approche de l'Apôtre Mohammed */}
+        <div className="space-y-1.5">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+            Approche de l&apos;Apôtre Mohammed
+          </p>
+          <p className="text-sm text-gray-700 leading-relaxed">{selected.approcheApotre}</p>
+        </div>
+
+        {/* 6. Construction de la prédication */}
+        <div className="rounded-2xl border border-vh-green-200 bg-vh-green-50 px-4 py-4 space-y-1.5">
+          <div className="flex items-center gap-2">
+            <ThreadIcon className="h-4 w-4 text-vh-green-600 shrink-0" />
+            <p className="text-xs font-semibold text-vh-green-700 uppercase tracking-wide">
+              Construction de la prédication
+            </p>
+          </div>
+          <p className="text-sm text-vh-green-900 leading-relaxed">{selected.constructionPredication}</p>
+        </div>
+
+        {/* 7. Question qui touche le cœur — encadré or distinct */}
+        <div className="rounded-2xl border border-vh-gold-400 bg-vh-gold-300/10 px-4 py-4 space-y-2">
+          <div className="flex items-center gap-2">
+            <HeartIcon className="h-4 w-4 text-vh-gold-500 shrink-0" />
+            <p className="text-xs font-semibold text-vh-gold-600 uppercase tracking-wide">
+              Question qui touche le cœur
+            </p>
+          </div>
+          <p className="text-base font-medium text-gray-900 leading-snug italic">
+            &ldquo;{selected.questionCoeur}&rdquo;
+          </p>
+          <p className="text-xs text-vh-gold-600">
+            Pose-toi cette question avant de préparer ton message.
+          </p>
+        </div>
+
+        {/* 8. CTA */}
         <button
           onClick={() => router.push(`/etudiant/exercice/entrainer?themeId=${selected.id}`)}
           className="flex w-full items-center justify-between rounded-2xl bg-vh-green-600 px-4 py-4 text-sm font-semibold text-white shadow-sm active:scale-95 transition-transform"
@@ -178,14 +171,19 @@ export function ExerciceClient({ themes }: { themes: ThemeData[] }) {
           <button
             key={theme.id}
             onClick={() => selectTheme(theme)}
-            className="rounded-2xl border border-gray-100 bg-white p-4 text-left space-y-1.5 active:border-vh-green-300 active:bg-vh-green-50 transition-colors shadow-sm"
+            className="rounded-2xl border border-gray-100 bg-white p-4 text-left space-y-2 active:border-vh-green-300 active:bg-vh-green-50 transition-colors shadow-sm"
           >
             <p className="text-sm font-semibold text-gray-900 leading-snug line-clamp-2">
               {theme.titre}
             </p>
-            <p className="text-xs text-vh-green-600 leading-snug line-clamp-2">
-              {theme.penseeCentrale}
-            </p>
+            <div className="space-y-1">
+              <p className="text-xs text-vh-green-600 line-clamp-1">
+                {theme.coursCorrespondant}
+              </p>
+              <span className="inline-block rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-500">
+                {theme.classe}
+              </span>
+            </div>
           </button>
         ))}
       </div>
@@ -245,6 +243,14 @@ function ThreadIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+    </svg>
+  );
+}
+
+function HeartIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
     </svg>
   );
 }

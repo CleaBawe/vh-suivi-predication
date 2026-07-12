@@ -18,11 +18,13 @@ async function main() {
   for (const t of themesData.themes) {
     await db.insert(schema.themesExercice).values({
       titre: t.titre,
-      penseeCentrale: t.pensee_centrale,
-      personnageBiblique: t.personnage_biblique,
+      coursCorrespondant: t.cours_correspondant,
+      classe: t.classe,
       versetsBase: t.versets_base,
-      filConducteur: t.fil_conducteur,
-      tips: t.tips,
+      personnageBiblique: t.personnage_biblique,
+      approcheApotre: t.approche_apotre,
+      constructionPredication: t.construction_predication,
+      questionCoeur: t.question_coeur,
     });
     console.log(`  ✓ ${t.titre}`);
   }

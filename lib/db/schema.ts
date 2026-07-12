@@ -51,11 +51,13 @@ export const progress = pgTable("progress", {
 export const themesExercice = pgTable("themes_exercice", {
   id: serial("id").primaryKey(),
   titre: varchar("titre", { length: 200 }).notNull(),
-  penseeCentrale: varchar("pensee_centrale", { length: 300 }).notNull(),
-  personnageBiblique: varchar("personnage_biblique", { length: 100 }).notNull(),
+  coursCorrespondant: text("cours_correspondant").notNull(),
+  classe: varchar("classe", { length: 100 }).notNull(),
   versetsBase: text("versets_base").array().notNull(),
-  filConducteur: text("fil_conducteur").notNull(),
-  tips: text("tips").array().notNull(),
+  personnageBiblique: varchar("personnage_biblique", { length: 100 }).notNull(),
+  approcheApotre: text("approche_apotre").notNull(),
+  constructionPredication: text("construction_predication").notNull(),
+  questionCoeur: text("question_coeur").notNull(),
 });
 
 export const submissions = pgTable("submissions", {

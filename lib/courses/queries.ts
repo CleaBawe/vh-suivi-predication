@@ -38,11 +38,13 @@ export type CourseData = {
 export type ThemeData = {
   id: number;
   titre: string;
-  penseeCentrale: string;
-  personnageBiblique: string;
+  coursCorrespondant: string;
+  classe: string;
   versetsBase: string[];
-  filConducteur: string;
-  tips: string[];
+  personnageBiblique: string;
+  approcheApotre: string;
+  constructionPredication: string;
+  questionCoeur: string;
 };
 
 export async function getCoursesWithProgress(userId: number): Promise<CourseData[]> {
@@ -87,11 +89,13 @@ export async function getThemesExercice(): Promise<ThemeData[]> {
   return rows.map((r) => ({
     id: r.id,
     titre: r.titre,
-    penseeCentrale: r.penseeCentrale,
-    personnageBiblique: r.personnageBiblique,
+    coursCorrespondant: r.coursCorrespondant,
+    classe: r.classe,
     versetsBase: r.versetsBase,
-    filConducteur: r.filConducteur,
-    tips: r.tips,
+    personnageBiblique: r.personnageBiblique,
+    approcheApotre: r.approcheApotre,
+    constructionPredication: r.constructionPredication,
+    questionCoeur: r.questionCoeur,
   }));
 }
 
