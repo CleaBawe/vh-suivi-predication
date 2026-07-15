@@ -78,6 +78,22 @@ export function CoursesPageClient({
     [lastInspirationId]
   );
 
+  const handleProgressSaved = useCallback(
+    (courseId: number, updates: { verset?: string | null; notes?: string | null }) => {
+      setProgressMap((prev) => {
+        const next = new Map(prev);
+        const existing = next.get(courseId) ?? { done: false, verset: null, notes: null };
+        next.set(courseId, {
+          ...existing,
+          ...(updates.verset !== undefined && { verset: updates.verset }),
+          ...(updates.notes !== undefined && { notes: updates.notes }),
+        });
+        return next;
+      });
+    },
+    []
+  );
+
   const toggleClass = (classe: number) => {
     setOpenClasses((prev) => {
       const next = new Set(prev);
@@ -112,6 +128,7 @@ export function CoursesPageClient({
             course={orientation}
             progress={progressMap.get(orientation.id) ?? null}
             onToggleDone={handleToggleDone}
+            onProgressSaved={handleProgressSaved}
             variant="orientation"
           />
         </section>
@@ -149,6 +166,7 @@ export function CoursesPageClient({
                     course={course}
                     progress={progressMap.get(course.id) ?? null}
                     onToggleDone={handleToggleDone}
+                    onProgressSaved={handleProgressSaved}
                   />
                 ))}
               </div>

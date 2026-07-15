@@ -10,15 +10,17 @@ type Props = {
   course: CourseData;
   progress: { done: boolean; verset: string | null; notes: string | null } | null;
   onToggleDone: (courseId: number, currentDone: boolean) => Promise<InspirationData | null>;
+  onProgressSaved?: (courseId: number, updates: { verset?: string | null; notes?: string | null }) => void;
   variant?: "orientation" | "default";
 };
 
-export function CourseCard({ course, progress, onToggleDone, variant = "default" }: Props) {
+export function CourseCard({ course, progress, onToggleDone, onProgressSaved, variant = "default" }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [verset, setVerset] = useState(progress?.verset ?? "");
   const [notes, setNotes] = useState(progress?.notes ?? "");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const versetDebounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const notesDebounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const savedTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -27,6 +29,7 @@ export function CourseCard({ course, progress, onToggleDone, variant = "default"
 
   const flashSaved = () => {
     setSaved(true);
+    setSaveError(false);
     if (savedTimerRef.current !== undefined) clearTimeout(savedTimerRef.current);
     savedTimerRef.current = setTimeout(() => setSaved(false), 2000);
   };
@@ -34,24 +37,38 @@ export function CourseCard({ course, progress, onToggleDone, variant = "default"
   const handleVersetChange = (val: string) => {
     setVerset(val);
     setSaved(false);
+    setSaveError(false);
     if (versetDebounceRef.current !== undefined) clearTimeout(versetDebounceRef.current);
     versetDebounceRef.current = setTimeout(async () => {
       setSaving(true);
-      await saveProgress(course.id, { verset: val }).catch(() => null);
-      setSaving(false);
-      flashSaved();
+      try {
+        await saveProgress(course.id, { verset: val });
+        setSaving(false);
+        flashSaved();
+        onProgressSaved?.(course.id, { verset: val || null });
+      } catch {
+        setSaving(false);
+        setSaveError(true);
+      }
     }, 800);
   };
 
   const handleNotesChange = (val: string) => {
     setNotes(val);
     setSaved(false);
+    setSaveError(false);
     if (notesDebounceRef.current !== undefined) clearTimeout(notesDebounceRef.current);
     notesDebounceRef.current = setTimeout(async () => {
       setSaving(true);
-      await saveProgress(course.id, { notes: val }).catch(() => null);
-      setSaving(false);
-      flashSaved();
+      try {
+        await saveProgress(course.id, { notes: val });
+        setSaving(false);
+        flashSaved();
+        onProgressSaved?.(course.id, { notes: val || null });
+      } catch {
+        setSaving(false);
+        setSaveError(true);
+      }
     }, 800);
   };
 
@@ -182,6 +199,8 @@ export function CourseCard({ course, progress, onToggleDone, variant = "default"
             />
             {saving ? (
               <p className="mt-1 text-xs text-gray-400">Enregistrement…</p>
+            ) : saveError ? (
+              <p className="mt-1 text-xs text-red-500">Erreur — non enregistré. Réessaie.</p>
             ) : saved ? (
               <p className="mt-1 text-xs text-green-500">✓ Enregistré</p>
             ) : null}

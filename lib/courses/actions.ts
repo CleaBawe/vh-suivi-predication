@@ -157,7 +157,7 @@ export async function submitTrainingForTheme(
 
 export async function uploadAudioBlob(formData: FormData): Promise<string> {
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    throw new Error("BLOB_READ_WRITE_TOKEN non configuré");
+    throw new Error("L'enregistrement audio n'est pas disponible pour le moment. Utilise la saisie texte à la place, ou contacte l'administrateur.");
   }
 
   const session = await getSession();
